@@ -5,6 +5,9 @@
     "lerna": "^3.20.2",
     "typescript": "^3.8.3"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "scripts": {
     "bootstrap": "lerna bootstrap -- --no-optional",
     "lerna": "lerna",
