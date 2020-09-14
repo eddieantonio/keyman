@@ -8,8 +8,6 @@
     "developer/js",
     "common/models/*",
     "common/predictive-text",
-    "resources/gosh",
-    "resources/web-environment",
     "web"
   ],
   "hoist": [
