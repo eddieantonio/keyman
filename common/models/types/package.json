@@ -1,6 +1,6 @@
 {
   "name": "@keymanapp/models-types",
-  "version": "14.0.151",
+  "version": "14.0.153",
   "description": "Type definitions in used in the modeling (lexical model/predictive text) component of Keyman.",
   "types": "./index.d.ts",
   "scripts": {
@@ -36,7 +36,7 @@
     "README.md",
     "index.d.ts"
   ],
-  "gitHead": "a099856f972228bb92104c7bf0db1380ffc0c938",
+  "gitHead": "1926faeb063c2021abe6313c64116286f710dc9d",
   "publishConfig": {
     "access": "public",
     "registry": "https://npm.pkg.github.com/"
