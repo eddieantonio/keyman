@@ -1,6 +1,6 @@
 {
   "name": "@keymanapp/models-wordbreakers",
-  "version": "14.0.155",
+  "version": "14.0.156",
   "description": "Word breakers bundled in the modeling layer",
   "keywords": [
     "lexical model",
@@ -15,13 +15,13 @@
   ],
   "homepage": "https://github.com/keymanapp/keyman",
   "license": "MIT",
-  "main": "lib/index.js",
+  "main": "index.js",
   "directories": {
-    "lib": "lib",
     "test": "test"
   },
   "files": [
-    "lib"
+    "index.js",
+    "index.d.ts"
   ],
   "publishConfig": {
     "access": "public"
