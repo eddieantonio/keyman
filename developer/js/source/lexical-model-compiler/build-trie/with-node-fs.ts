@@ -1,3 +1,8 @@
+/**
+ * Extends build-trie with utilities that depend upon Node's fs module.
+ * 
+ * @file with-node-fs
+ */
 import { readFileSync } from "fs";
 import { detectEncodingFromBuffer, enumerateLines, NEWLINE_SEPARATOR } from "./index";
 

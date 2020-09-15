@@ -26,11 +26,16 @@ export function createTrieDataStructure(filenames: string[], searchTermToKey?: (
     throw new TypeError("searchTermToKey must be explicitly specified")
   }
   // Make one big word list out of all of the filenames provided.
-  let wordlist: WordList = {};
-  filenames.forEach(filename => parseWordListFromFilename(wordlist, filename));
+  let wordlist: WordList = wordListFromFileNames(filenames);
 
   let trie = Trie.buildTrie(wordlist, searchTermToKey as Trie.SearchTermToKey);
   return JSON.stringify(trie);
+}
+
+function wordListFromFileNames(filenames: string[]) {
+  let wordlist: WordList = {};
+  filenames.forEach(filename => parseWordListFromFilename(wordlist, filename));
+  return wordlist;
 }
 
 /**
