@@ -1,6 +1,6 @@
 {
   "name": "@keymanapp/lexical-model-compiler",
-  "version": "14.0.157-alpha.0",
+  "version": "14.0.156-alpha.1",
   "description": "Keyman Developer lexical model compiler",
   "keywords": [
     "keyboard",
@@ -39,14 +39,14 @@
     "node": ">=12.0.0"
   },
   "dependencies": {
-    "@keymanapp/models-types": "^14.0.157-alpha.0",
+    "@keymanapp/models-types": "^14.0.156-alpha.1",
     "commander": "^3.0.0",
     "typescript": "^3.8.3",
     "xml2js": "^0.4.19"
   },
   "devDependencies": {
-    "@keymanapp/models-templates": "^14.0.157-alpha.0",
-    "@keymanapp/models-wordbreakers": "^14.0.157-alpha.0",
+    "@keymanapp/models-templates": "^14.0.156-alpha.1",
+    "@keymanapp/models-wordbreakers": "^14.0.156-alpha.1",
     "@types/chai": "^4.1.7",
     "@types/mocha": "^5.2.7",
     "@types/node": "^10.14.6",
@@ -61,5 +61,5 @@
     "require": "ts-node/register",
     "spec": "tests/**/test-*.ts"
   },
-  "gitHead": "1926faeb063c2021abe6313c64116286f710dc9d"
+  "gitHead": "a69af392b26d19334da3cd8e6dac6869d1c726e5"
 }
