@@ -22,7 +22,7 @@ export function createTrieDataStructureFromFilenames(filenames: string[], search
 /**
  * Make one big word list out of all of the filenames provided.
  */
-export function wordListFromFilenames(filenames: string[]) {
+function wordListFromFilenames(filenames: string[]) {
   let wordlist: WordList = {};
   filenames.forEach(filename => parseWordListFromFilename(wordlist, filename));
   return wordlist;
@@ -43,6 +43,9 @@ export function parseWordListFromFilename(wordlist: WordList, filename: string):
   parseWordList(wordlist, new WordListFromFilename(filename));
 }
 
+/**
+ * Given a real filesystem path, this implements the WordList source.
+ */
 export class WordListFromFilename implements WordListSource {
   readonly name: string;
   constructor(filename: string) {
