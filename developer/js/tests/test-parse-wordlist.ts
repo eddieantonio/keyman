@@ -1,4 +1,5 @@
-import {parseWordListFromContents, parseWordListFromFilename, WordList} from '../dist/lexical-model-compiler/build-trie';
+import {parseWordListFromContents, WordList} from '../dist/lexical-model-compiler/build-trie';
+import {parseWordListFromFilename} from '../dist/lexical-model-compiler/build-trie/with-node-fs';
 import {assert} from 'chai';
 import 'mocha';
 import { makePathToFixture, LogHoarder } from './helpers';

@@ -8,7 +8,8 @@
 import * as ts from "typescript";
 import * as fs from "fs";
 import * as path from "path";
-import { compileTrieFromWordlist, wordListFromFilenames, defaultSearchTermToKey } from "./build-trie";
+import { compileTrieFromWordlist, defaultSearchTermToKey } from "./build-trie";
+import { wordListFromFilenames } from "./build-trie/with-node-fs";
 import {decorateWithJoin} from "./join-word-breaker-decorator";
 import {decorateWithScriptOverrides} from "./script-overrides-decorator";
 

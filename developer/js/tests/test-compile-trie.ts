@@ -3,7 +3,7 @@ import {assert} from 'chai';
 import 'mocha';
 
 import {makePathToFixture, compileModelSourceCode} from './helpers';
-import { createTrieDataStructure } from '../dist/lexical-model-compiler/build-trie';
+import { createTrieDataStructure } from '../dist/lexical-model-compiler/build-trie/with-node-fs';
 
 describe('LexicalModelCompiler', function () {
   describe('#generateLexicalModelCode', function () {
