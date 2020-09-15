@@ -33,7 +33,7 @@ export function compileTrieFromWordlist(wordlist: WordList, searchTermToKey: (wf
  * @param filename filename of the word list
  */
 export function parseWordListFromContents(wordlist: WordList, contents: string): void {
-  _parseWordList(wordlist, new WordListFromMemory(contents));
+  parseWordList(wordlist, new WordListFromMemory(contents));
 }
 
 /**
@@ -61,7 +61,7 @@ export function parseWordListFromContents(wordlist: WordList, contents: string):
  * @param wordlist word list to merge entries into (may have existing entries)
  * @param contents contents of the file to import
  */
-export function _parseWordList(wordlist: WordList, source:  WordListSource): void {
+export function parseWordList(wordlist: WordList, source:  WordListSource): void {
   const TAB = "\t";
 
   let wordsSeenInThisFile = new Set<string>();

@@ -4,7 +4,7 @@
  * @file with-node-fs
  */
 import { readFileSync } from "fs";
-import { compileTrieFromWordlist, detectEncodingFromBuffer, enumerateLines, NEWLINE_SEPARATOR, WordList, _parseWordList } from "./index";
+import { compileTrieFromWordlist, detectEncodingFromBuffer, enumerateLines, NEWLINE_SEPARATOR, WordList, parseWordList } from "./index";
 
 /**
  * Returns a data structure that can be loaded by the TrieModel.
@@ -57,5 +57,5 @@ export function wordListFromFilenames(filenames: string[]) {
  * @param filename filename of the word list
  */
 export function parseWordListFromFilename(wordlist: WordList, filename: string): void {
-  _parseWordList(wordlist, new WordListFromFilename(filename));
+  parseWordList(wordlist, new WordListFromFilename(filename));
 }
