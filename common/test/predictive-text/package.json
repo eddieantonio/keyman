@@ -11,7 +11,8 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/keymanapp/keyman.git"
+    "url": "git+https://github.com/eddieantonio/keyman.git",
+    "directory": "common/test/predictive-text"
   },
   "dependencies": {
     "commander": "^2.20.0",

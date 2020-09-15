@@ -30,7 +30,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/keymanapp/keyman.git"
+    "url": "git+https://github.com/eddieantonio/keyman.git",
+    "directory": "common/models/templates"
   },
   "scripts": {
     "build": "tsc",

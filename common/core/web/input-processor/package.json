@@ -4,7 +4,8 @@
   "description": "The core text and prediction processing engine for KeymanWeb",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/keymanapp/keyman.git"
+    "url": "git+https://github.com/eddieantonio/keyman.git",
+    "directory": "common/core/web/input-processor"
   },
   "keywords": [
     "input",

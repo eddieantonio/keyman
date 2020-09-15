@@ -12,7 +12,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/keymanapp/keyman.git"
+    "url": "git+https://github.com/eddieantonio/keyman.git",
+    "directory": "common/predictive-text"
   },
   "author": "Eddie Antonio Santos <Eddie.Santos@nrc-cnrc.gc.ca>",
   "license": "MIT",
