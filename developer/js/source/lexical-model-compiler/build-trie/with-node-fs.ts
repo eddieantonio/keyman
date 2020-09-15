@@ -5,7 +5,7 @@
  */
 import { readFileSync } from "fs";
 import { compileTrieFromWordlist, detectEncodingFromBuffer, enumerateLines, NEWLINE_SEPARATOR, parseWordList } from "./index";
-import { WordList } from "../wordlist";
+import { WordList, WordListSource } from "../wordlist";
 
 /**
  * Returns a data structure that can be loaded by the TrieModel.
@@ -18,24 +18,6 @@ import { WordList } from "../wordlist";
 export function createTrieDataStructureFromFilenames(filenames: string[], searchTermToKey: (wf: string) => string): string {
   return compileTrieFromWordlist(wordListFromFilenames(filenames), searchTermToKey);
 }
-
-export class WordListFromFilename {
-  readonly name: string;
-  constructor(filename: string) {
-    this.name = filename;
-  }
-
-  *lines() {
-    let contents = readFileSync(this.name, detectEncodingFromFilename(this.name));
-    yield* enumerateLines(contents.split(NEWLINE_SEPARATOR));
-  }
-}
-
-export function detectEncodingFromFilename(filename: string): 'utf8' | 'utf16le' {
-  let buffer = readFileSync(filename);
-  return detectEncodingFromBuffer(buffer);
-}
-
 
 /**
  * Make one big word list out of all of the filenames provided.
@@ -59,4 +41,21 @@ export function wordListFromFilenames(filenames: string[]) {
  */
 export function parseWordListFromFilename(wordlist: WordList, filename: string): void {
   parseWordList(wordlist, new WordListFromFilename(filename));
+}
+
+class WordListFromFilename implements WordListSource {
+  readonly name: string;
+  constructor(filename: string) {
+    this.name = filename;
+  }
+
+  *lines() {
+    let contents = readFileSync(this.name, detectEncodingFromFilename(this.name));
+    yield* enumerateLines(contents.split(NEWLINE_SEPARATOR));
+  }
+}
+
+function detectEncodingFromFilename(filename: string): 'utf8' | 'utf16le' {
+  let buffer = readFileSync(filename);
+  return detectEncodingFromBuffer(buffer);
 }
