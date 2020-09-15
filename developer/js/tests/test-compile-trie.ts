@@ -1,4 +1,4 @@
-import { LegacyLexicalModelCompiler } from '../dist/lexical-model-compiler/lexical-model-compiler';
+import { LegacyLexicalModelCompiler } from '../dist/lexical-model-compiler/legacy-lexical-model-compiler';
 import {assert} from 'chai';
 import 'mocha';
 
