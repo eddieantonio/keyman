@@ -12,7 +12,22 @@ import { wordListFromFilenames } from "./build-trie/with-node-fs";
 import {decorateWithJoin} from "./join-word-breaker-decorator";
 import {decorateWithScriptOverrides} from "./script-overrides-decorator";
 
+/**
+ * A string that MUST be a valid snippet of JavaScript code.
+ */
+type JavaScriptSnippet = string & { _js: true };
+
 export default class LexicalModelCompiler {
+  snippets: JavaScriptSnippet[] = [];
+
+  private emit(code: JavaScriptSnippet): void {
+    this.snippets.push(code);
+  }
+
+  private get func() {
+    return this.snippets.join('');
+  }
+  
   /**
    * Returns the generated code for the model that will ultimately be loaded by
    * the LMLayer worker. This code contains all model parameters, and specifies
@@ -25,9 +40,9 @@ export default class LexicalModelCompiler {
    */
   generateLexicalModelCode(model_id: string, modelSource: LexicalModelSource, sourcePath: string) {
     // TODO: add metadata in comment
-    const filePrefix: string = `(function() {\n'use strict';\n`;
-    const fileSuffix: string = `})();`;
-    let func = filePrefix;
+    const filePrefix = `(function() {\n'use strict';\n`;
+    const fileSuffix = `})();`;
+    this.emit(filePrefix as JavaScriptSnippet)
 
     //
     // Emit the model as code and data
@@ -46,27 +61,27 @@ export default class LexicalModelCompiler {
         // Use the default search term to key function, if left unspecified.
         let searchTermToKey = modelSource.searchTermToKey || defaultSearchTermToKey;
 
-        func += `LMLayerWorker.loadModel(new models.TrieModel(${
+        this.emit(`LMLayerWorker.loadModel(new models.TrieModel(${
           compileTrieFromWordlist(wordlist, searchTermToKey)
-        }, {\n`;
+        }, {\n` as JavaScriptSnippet);
 
         let wordBreakerSourceCode = compileWordBreaker(normalizeWordBreakerSpec(modelSource.wordBreaker));
-        func += `  wordBreaker: ${wordBreakerSourceCode},\n`;
+        this.emit(`  wordBreaker: ${wordBreakerSourceCode},\n` as JavaScriptSnippet);
 
-        func += `  searchTermToKey: ${searchTermToKey.toString()},\n`;
+        this.emit(`  searchTermToKey: ${searchTermToKey.toString()},\n` as JavaScriptSnippet);
 
         if (modelSource.punctuation) {
-          func += `  punctuation: ${JSON.stringify(modelSource.punctuation)},\n`;
+          this.emit(`  punctuation: ${JSON.stringify(modelSource.punctuation)},\n` as JavaScriptSnippet);
         }
-        func += `}));\n`;
+        this.emit(`}));\n` as JavaScriptSnippet);
         break;
       default:
         throw new ModelSourceError(`Unknown model format: ${modelSource.format}`);
     }
 
-    func += fileSuffix;
+    this.emit(fileSuffix as JavaScriptSnippet);
 
-    return func;
+    return this.func;
   }
 
   transpileSources(sources: Array<string>): Array<string> {
