@@ -87,10 +87,6 @@ export default class LexicalModelCompiler {
 
     return this.func;
   }
-
-  logError(s: string) {
-    console.error(require('chalk').red(s));
-  };
 };
 
 export class LegacyLexicalModelCompiler extends LexicalModelCompiler {
@@ -115,7 +111,7 @@ export class ModelSourceError extends Error {
  * Returns a JavaScript expression (as a string) that can serve as a word
  * breaking function.
  */
-function compileWordBreaker(spec: WordBreakerSpec): string {
+function compileWordBreaker(spec: WordBreakerSpec): JavaScriptSnippet {
   let wordBreakerCode = compileInnerWordBreaker(spec.use);
 
   if (spec.joinWordsAt) {
@@ -129,34 +125,34 @@ function compileWordBreaker(spec: WordBreakerSpec): string {
   return wordBreakerCode;
 }
 
-function compileJoinDecorator(spec: WordBreakerSpec, existingWordBreakerCode: string) {
+function compileJoinDecorator(spec: WordBreakerSpec, existingWordBreakerCode: string): JavaScriptSnippet {
   // Bundle the source of the join decorator, as an IIFE,
   // like this: (function join(breaker, joiners) {/*...*/}(breaker, joiners))
   // The decorator will run IMMEDIATELY when the model is loaded,
   // by the LMLayer returning the decorated word breaker to the
   // LMLayer model.
   let joinerExpr: string = JSON.stringify(spec.joinWordsAt)
-  return `(${decorateWithJoin.toString()}(${existingWordBreakerCode}, ${joinerExpr}))`;
+  return `(${decorateWithJoin.toString()}(${existingWordBreakerCode}, ${joinerExpr}))` as JavaScriptSnippet;
 }
 
-function compileScriptOverrides(spec: WordBreakerSpec, existingWordBreakerCode: string) {
-  return `(${decorateWithScriptOverrides.toString()}(${existingWordBreakerCode}, '${spec.overrideScriptDefaults}'))`;
+function compileScriptOverrides(spec: WordBreakerSpec, existingWordBreakerCode: string): JavaScriptSnippet {
+  return `(${decorateWithScriptOverrides.toString()}(${existingWordBreakerCode}, '${spec.overrideScriptDefaults}'))` as JavaScriptSnippet;
 }
 
 /**
  * Compiles the base word breaker, that may be decorated later.
  * Returns the source code of a JavaScript expression.
  */
-function compileInnerWordBreaker(spec: SimpleWordBreakerSpec): string {
+function compileInnerWordBreaker(spec: SimpleWordBreakerSpec): JavaScriptSnippet {
   if (typeof spec === "string") {
     // It must be a builtin word breaker, so just instantiate it.
-    return `wordBreakers['${spec}']`;
+    return `wordBreakers['${spec}']` as JavaScriptSnippet;
   } else {
     // It must be a function:
     return spec.toString()
       // Note: the .toString() might just be the property name, but we want a
       // plain function:
-      .replace(/^wordBreak(ing|er)\b/, 'function');
+      .replace(/^wordBreak(ing|er)\b/, 'function') as JavaScriptSnippet;
   }
 }
 
