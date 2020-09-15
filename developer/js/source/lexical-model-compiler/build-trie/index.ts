@@ -1,8 +1,9 @@
 import { readFileSync } from "fs";
 import { log, KeymanCompilerError } from "../../errors";
+import { WordListFromFilename } from "./with-node-fs";
 
 // Supports LF or CRLF line terminators.
-const NEWLINE_SEPARATOR = /\u000d?\u000a/;
+export const NEWLINE_SEPARATOR = /\u000d?\u000a/;
 
 /**
  * A word list is (conceptually) an array of pairs: the concrete word form itself + a
@@ -162,22 +163,10 @@ class WordListFromMemory implements WordListSource {
   }
 }
 
-class WordListFromFilename {
-  readonly name: string;
-  constructor(filename: string) {
-    this.name = filename;
-  }
-
-  *lines() {
-    let contents = readFileSync(this.name, detectEncoding(this.name));
-    yield *enumerateLines(contents.split(NEWLINE_SEPARATOR));
-  }
-}
-
 /**
  * Yields pairs of [lineno, line], given an Array of lines.
  */
-function* enumerateLines(lines: string[]): Generator<LineNoAndText> {
+export function* enumerateLines(lines: string[]): Generator<LineNoAndText> {
     let i = 1;
     for (let line of lines) {
       yield [i, line];
@@ -505,7 +494,7 @@ export function defaultSearchTermToKey(wordform: string): string {
 /**
  * @deprecated Use detectEncodingFromFilename instead
  */
-function detectEncoding(filename: string): 'utf8' | 'utf16le' {
+export function detectEncoding(filename: string): 'utf8' | 'utf16le' {
   let buffer = readFileSync(filename);
   return detectEncodingFromBuffer(buffer);
 }
