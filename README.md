@@ -1,15 +1,15 @@
-![Keyman](https://keyman.com/cdn/dev/img/logo2.png)
+> **NOTE**: This is Eddie's fork of Keyman, for publishing npm packages
+> that (ideally) do not conflict with the upstream repository.
+> 
+> **All npm packages are uploaded under the `@eddieantonio` scope** rather
+> than the `@keymanapp` scope.
+> 
+> To see the custom packages, see here:
+> 
+>  - https://github.com/eddieantonio/keyman/packages/
+> ![Keyman](https://keyman.com/cdn/dev/img/logo2.png)
 
-**NOTE**: This is Eddie's fork of Keyman, for publishing npm packages
-that (ideally) do not conflict with the upstream repository.
-
-**All npm packages are uploaded under the `@eddieantonio` scope** rather
-than the `@keymanapp` scope.
-
-To see the custom packages, see here:
-
- - https://github.com/eddieantonio/keyman/packages/
-
+---
 
 [Keyman](https://keyman.com) makes it possible for you to type in any language on Windows, macOS, Linux, iPhone, iPad, Android tablets and phones, and even instantly in your web browser. Create keyboard layouts with Keyman Developer and share them with the community in the [keyboards repository](https://github.com/keymanapp/keyboards). The [Keyman Community](https://community.software.sil.org/c/keyman) have already contributed keyboard layouts for over 1,500 languages!
 
