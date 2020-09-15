@@ -28,24 +28,24 @@ export function createTrieDataStructure(filenames: string[], searchTermToKey?: (
     throw new TypeError("searchTermToKey must be explicitly specified")
   }
 
-  let wordlist: WordList = wordListFromFileNames(filenames);
+  let wordlist: WordList = wordListFromFilenames(filenames);
   return compileTrieFromWordlist(wordlist, searchTermToKey);
 }
 
 export function createTrieDataStructureFromFilenames(filenames: string[], searchTermToKey: (wf: string) => string): string {
-  return compileTrieFromWordlist(wordListFromFileNames(filenames), searchTermToKey);
+  return compileTrieFromWordlist(wordListFromFilenames(filenames), searchTermToKey);
 }
 
 /**
  * Make one big word list out of all of the filenames provided.
  */
-function wordListFromFileNames(filenames: string[]) {
+export function wordListFromFilenames(filenames: string[]) {
   let wordlist: WordList = {};
   filenames.forEach(filename => parseWordListFromFilename(wordlist, filename));
   return wordlist;
 }
 
-function compileTrieFromWordlist(wordlist: WordList, searchTermToKey: (wf: string) => string) {
+export function compileTrieFromWordlist(wordlist: WordList, searchTermToKey: (wf: string) => string) {
   let trie = Trie.buildTrie(wordlist, searchTermToKey as Trie.SearchTermToKey);
   return JSON.stringify(trie);
 }

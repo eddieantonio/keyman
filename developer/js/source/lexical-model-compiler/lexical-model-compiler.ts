@@ -8,7 +8,7 @@
 import * as ts from "typescript";
 import * as fs from "fs";
 import * as path from "path";
-import { createTrieDataStructure, defaultSearchTermToKey } from "./build-trie";
+import { compileTrieFromWordlist, wordListFromFilenames, defaultSearchTermToKey } from "./build-trie";
 import {decorateWithJoin} from "./join-word-breaker-decorator";
 import {decorateWithScriptOverrides} from "./script-overrides-decorator";
 
@@ -48,12 +48,13 @@ export default class LexicalModelCompiler {
         // directory. This way, we'll read the files relative to the model.ts
         // file, rather than the current working directory.
         let filenames = modelSource.sources.map(filename => path.join(sourcePath, filename));
+        let wordlist = wordListFromFilenames(filenames);
 
         // Use the default search term to key function, if left unspecified.
         let searchTermToKey = modelSource.searchTermToKey || defaultSearchTermToKey;
 
         func += `LMLayerWorker.loadModel(new models.TrieModel(${
-          createTrieDataStructure(filenames, searchTermToKey)
+          compileTrieFromWordlist(wordlist, searchTermToKey)
         }, {\n`;
 
         let wordBreakerSourceCode = compileWordBreaker(normalizeWordBreakerSpec(modelSource.wordBreaker));
