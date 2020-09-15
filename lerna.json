@@ -1,9 +1,7 @@
 {
   "packages": [
-    "common/core/web/utils",
     "developer/js",
-    "common/models/*",
-    "common/predictive-text"
+    "common/models/types"
   ],
   "hoist": [
     "lerna",
