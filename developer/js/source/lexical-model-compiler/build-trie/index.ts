@@ -23,15 +23,22 @@ export type WordList = {[wordform: string]: number};
  */
 export function createTrieDataStructure(filenames: string[], searchTermToKey?: (wf: string) => string): string {
   if (typeof searchTermToKey !== "function") {
+    // TODO: why is this a type error and not a static error???
     throw new TypeError("searchTermToKey must be explicitly specified")
   }
-  // Make one big word list out of all of the filenames provided.
-  let wordlist: WordList = wordListFromFileNames(filenames);
 
+  let wordlist: WordList = wordListFromFileNames(filenames);
+  return _createTrieDataStructure(wordlist, searchTermToKey);
+}
+
+function _createTrieDataStructure(wordlist: WordList, searchTermToKey: (wf: string) => string) {
   let trie = Trie.buildTrie(wordlist, searchTermToKey as Trie.SearchTermToKey);
   return JSON.stringify(trie);
 }
 
+/**
+ * Make one big word list out of all of the filenames provided.
+ */
 function wordListFromFileNames(filenames: string[]) {
   let wordlist: WordList = {};
   filenames.forEach(filename => parseWordListFromFilename(wordlist, filename));
