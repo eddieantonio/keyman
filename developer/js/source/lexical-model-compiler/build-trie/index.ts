@@ -1,4 +1,3 @@
-import { readFileSync } from "fs";
 import { log, KeymanCompilerError } from "../../errors";
 import { WordListFromFilename } from "./with-node-fs";
 
@@ -490,15 +489,6 @@ export function defaultSearchTermToKey(wordform: string): string {
     .replace(/[\u0300-\u036F]/g, '');
 }
 
-
-/**
- * @deprecated Use detectEncodingFromFilename instead
- */
-export function detectEncoding(filename: string): 'utf8' | 'utf16le' {
-  let buffer = readFileSync(filename);
-  return detectEncodingFromBuffer(buffer);
-}
-
 /**
  * Detects the encoding of a text file.
  *
@@ -514,7 +504,7 @@ export function detectEncoding(filename: string): 'utf8' | 'utf16le' {
  *
  * @param filename filename of the file to detect encoding
  */
-function detectEncodingFromBuffer(buffer: Int8Array | Buffer): 'utf8' | 'utf16le' {
+export function detectEncodingFromBuffer(buffer: Int8Array | Buffer): 'utf8' | 'utf16le' {
   // Note: BOM is U+FEFF
   // In little endian, this is 0xFF 0xFE
   if (buffer[0] == 0xFF && buffer[1] == 0xFE) {
