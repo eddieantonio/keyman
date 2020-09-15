@@ -43,7 +43,7 @@ export function parseWordListFromFilename(wordlist: WordList, filename: string):
   parseWordList(wordlist, new WordListFromFilename(filename));
 }
 
-class WordListFromFilename implements WordListSource {
+export class WordListFromFilename implements WordListSource {
   readonly name: string;
   constructor(filename: string) {
     this.name = filename;

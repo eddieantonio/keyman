@@ -7,14 +7,20 @@
 
 import * as path from "path";
 import { compileTrieFromWordlist, defaultSearchTermToKey } from "./build-trie";
-import { wordListFromFilenames } from "./build-trie/with-node-fs";
+import { WordListFromFilename } from "./build-trie/with-node-fs";
 import {decorateWithJoin} from "./join-word-breaker-decorator";
 import {decorateWithScriptOverrides} from "./script-overrides-decorator";
+import { parseWordList, WordListSource } from "./wordlist";
 
 /**
  * A string that MUST be a valid snippet of JavaScript code.
  */
 type JavaScriptSnippet = string & { _js: true };
+
+/**
+ * A callback that fetches a wordlist with the given name.
+ */
+export type GetWordListByName = (name: string) => WordListSource;
 
 export default class LexicalModelCompiler {
   snippets: JavaScriptSnippet[] = [];
@@ -22,7 +28,7 @@ export default class LexicalModelCompiler {
   private emit(code: JavaScriptSnippet): void {
     this.snippets.push(code);
   }
-  
+
   private emitLine(code: JavaScriptSnippet): void {
     this.emit((code + "\n") as JavaScriptSnippet)
   }
@@ -30,7 +36,7 @@ export default class LexicalModelCompiler {
   private get func() {
     return this.snippets.join('');
   }
-  
+
   /**
    * Returns the generated code for the model that will ultimately be loaded by
    * the LMLayer worker. This code contains all model parameters, and specifies
@@ -42,7 +48,16 @@ export default class LexicalModelCompiler {
    * @param sourcePath    Where to find auxilary sources files
    */
   generateLexicalModelCode(model_id: string, modelSource: LexicalModelSource, sourcePath: string) {
-    
+    return this._generateLexicalModelCode(modelSource, (filename: string) => {
+      // Convert all relative path names to paths relative to the enclosing
+      // directory. This way, we'll read the files relative to the model.ts
+      // file, rather than the current working directory.
+      let adjustedFileName = path.join(sourcePath, filename);
+      return new WordListFromFilename(adjustedFileName);
+    })
+  }
+
+  _generateLexicalModelCode(modelSource: LexicalModelSource, getWordList: GetWordListByName) {
     //
     // Emit the model as code and data
     //
@@ -55,11 +70,10 @@ export default class LexicalModelCompiler {
       case "fst-foma-1.0":
         throw new ModelSourceError(`Unimplemented model format: ${modelSource.format}`);
       case "trie-1.0":
-        // Convert all relative path names to paths relative to the enclosing
-        // directory. This way, we'll read the files relative to the model.ts
-        // file, rather than the current working directory.
-        let filenames = modelSource.sources.map(filename => path.join(sourcePath, filename));
-        let wordlist = wordListFromFilenames(filenames);
+        let wordlist = modelSource.sources.reduce((wl, name) => {
+          parseWordList(wl, getWordList(name));
+          return wl;
+        }, {});
 
         // Use the default search term to key function, if left unspecified.
         let searchTermToKey = modelSource.searchTermToKey || defaultSearchTermToKey;
@@ -88,6 +102,7 @@ export default class LexicalModelCompiler {
     return this.func;
   }
 };
+
 
 export class LegacyLexicalModelCompiler extends LexicalModelCompiler {
   /**
