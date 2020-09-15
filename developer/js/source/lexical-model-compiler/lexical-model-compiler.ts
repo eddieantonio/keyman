@@ -6,7 +6,6 @@
 /// <reference path="./model-info-file.ts" />
 
 import * as ts from "typescript";
-import * as fs from "fs";
 import * as path from "path";
 import { compileTrieFromWordlist, defaultSearchTermToKey } from "./build-trie";
 import { wordListFromFilenames } from "./build-trie/with-node-fs";
@@ -36,13 +35,6 @@ export default class LexicalModelCompiler {
 
     switch(modelSource.format) {
       case "custom-1.0":
-        let sources: string[] = modelSource.sources.map(function(source) {
-          return fs.readFileSync(path.join(sourcePath, source), 'utf8');
-        });
-        func += this.transpileSources(sources).join('\n');
-        func += `LMLayerWorker.loadModel(new ${modelSource.rootClass}());\n`;
-        break;
-      case "fst-foma-1.0":
         throw new ModelSourceError(`Unimplemented model format: ${modelSource.format}`);
       case "trie-1.0":
         // Convert all relative path names to paths relative to the enclosing
