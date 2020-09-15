@@ -3,7 +3,7 @@ import {assert} from 'chai';
 import 'mocha';
 
 import {makePathToFixture, compileModelSourceCode} from './helpers';
-import { createTrieDataStructure } from '../dist/lexical-model-compiler/build-trie/with-node-fs';
+import { createTrieDataStructureFromFilenames } from '../dist/lexical-model-compiler/build-trie/with-node-fs';
 
 describe('LexicalModelCompiler', function () {
   describe('#generateLexicalModelCode', function () {
@@ -128,22 +128,16 @@ describe('LexicalModelCompiler', function () {
 describe('createTrieDataStructure()', function () {
   const WORDLIST_FILENAME = makePathToFixture('example.qaa.trivial', 'wordlist.tsv');
 
-  it('must be given an explicit searchTermToKey function', function () {
-    assert.throws(function () {
-      createTrieDataStructure([WORDLIST_FILENAME]);
-    }, TypeError)
-  });
-
   it('uses the provided searchTermToKey function', function () {
     // check if the expected key is in the resultant data structure.
     // N.B., we assume the wordlist contains the wordform "turtles"
-    let lowercaseSourceCode = createTrieDataStructure([WORDLIST_FILENAME], (wf) => {
+    let lowercaseSourceCode = createTrieDataStructureFromFilenames([WORDLIST_FILENAME], (wf) => {
       return wf.toLowerCase()
     })
     assert.match(lowercaseSourceCode, /"key":\s*"turtles"/);
     assert.notMatch(lowercaseSourceCode, /"key":\s*"TURTLES"/);
 
-    let uppercaseSourceCode = createTrieDataStructure([WORDLIST_FILENAME], (wf) => {
+    let uppercaseSourceCode = createTrieDataStructureFromFilenames([WORDLIST_FILENAME], (wf) => {
       return wf.toUpperCase()
     })
     assert.match(uppercaseSourceCode, /"key":\s*"TURTLES"/);
