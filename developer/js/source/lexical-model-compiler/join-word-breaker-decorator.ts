@@ -1,5 +1,3 @@
-/// <reference path="../../node_modules/@keymanapp/models-types/index.d.ts" />
-
 /**
  * Returns a word breaker that joins spans of an existing word breaker.
  * Spans are joined if they are connected by a delimiter.

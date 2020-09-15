@@ -12,7 +12,14 @@
     "noImplicitAny": true,
     "strictBindCallApply": true,
     "strictFunctionTypes": true,
-    "noUnusedLocals": true
+    "noUnusedLocals": true,
+    "typeRoots": [
+      "./node_modules/@types",
+      "./node_modules/@eddieantonio"
+    ],
+    "types": [
+      "chai", "mocha", "node", "xml2js", "models-types"
+    ]
   },
   "include": [
     "source/**/*.ts"

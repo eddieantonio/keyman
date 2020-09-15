@@ -1,5 +1,3 @@
-/// <reference path="../../node_modules/@keymanapp/models-types/index.d.ts" />
-
 export function decorateWithScriptOverrides(breaker: WordBreakingFunction, option: OverrideScriptDefaults) {
   if (option !== 'break-words-at-spaces') {
     throw new Error(`Unsupported script override: ${option}`)
