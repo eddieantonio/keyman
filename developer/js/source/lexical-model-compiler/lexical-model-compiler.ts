@@ -48,7 +48,7 @@ export default class LexicalModelCompiler {
    * @param sourcePath    Where to find auxilary sources files
    */
   generateLexicalModelCode(model_id: string, modelSource: LexicalModelSource, sourcePath: string) {
-    return this._generateLexicalModelCode(modelSource, (filename: string) => {
+    return this.compile(modelSource, (filename: string) => {
       // Convert all relative path names to paths relative to the enclosing
       // directory. This way, we'll read the files relative to the model.ts
       // file, rather than the current working directory.
@@ -57,10 +57,17 @@ export default class LexicalModelCompiler {
     })
   }
 
-  _generateLexicalModelCode(modelSource: LexicalModelSource, getWordList: GetWordListByName) {
-    //
-    // Emit the model as code and data
-    //
+  /**
+   * Returns the generated code for the model that will ultimately be loaded by
+   * the LMLayer worker. This code contains all model parameters, and specifies
+   * word breakers and auxilary functions that may be required.
+   *
+   * @deprecated
+   * @param model_id      The model ID. TODO: not sure if this is actually required!
+   * @param modelSource   A specification of the model to compile
+   * @param sourcePath    Where to find auxilary sources files
+   */
+  compile(modelSource: LexicalModelSource, getWordList: GetWordListByName): string {
     this.emitLine(`(function() {` as JavaScriptSnippet);
     this.emitLine(`'use strict';` as JavaScriptSnippet);
     // TODO: add metadata in comment
