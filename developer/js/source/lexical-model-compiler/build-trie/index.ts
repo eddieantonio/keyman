@@ -29,16 +29,11 @@ export function createTrieDataStructure(filenames: string[], searchTermToKey?: (
   }
 
   let wordlist: WordList = wordListFromFileNames(filenames);
-  return _createTrieDataStructure(wordlist, searchTermToKey);
+  return compileTrieFromWordlist(wordlist, searchTermToKey);
 }
 
 export function createTrieDataStructureFromFilenames(filenames: string[], searchTermToKey: (wf: string) => string): string {
-  return _createTrieDataStructure(wordListFromFileNames(filenames), searchTermToKey);
-}
-
-function _createTrieDataStructure(wordlist: WordList, searchTermToKey: (wf: string) => string) {
-  let trie = Trie.buildTrie(wordlist, searchTermToKey as Trie.SearchTermToKey);
-  return JSON.stringify(trie);
+  return compileTrieFromWordlist(wordListFromFileNames(filenames), searchTermToKey);
 }
 
 /**
@@ -48,6 +43,11 @@ function wordListFromFileNames(filenames: string[]) {
   let wordlist: WordList = {};
   filenames.forEach(filename => parseWordListFromFilename(wordlist, filename));
   return wordlist;
+}
+
+function compileTrieFromWordlist(wordlist: WordList, searchTermToKey: (wf: string) => string) {
+  let trie = Trie.buildTrie(wordlist, searchTermToKey as Trie.SearchTermToKey);
+  return JSON.stringify(trie);
 }
 
 /**
