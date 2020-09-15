@@ -5,7 +5,6 @@
 /// <reference path="./lexical-model.ts" />
 /// <reference path="./model-info-file.ts" />
 
-import * as ts from "typescript";
 import * as path from "path";
 import { compileTrieFromWordlist, defaultSearchTermToKey } from "./build-trie";
 import { wordListFromFilenames } from "./build-trie/with-node-fs";
@@ -86,13 +85,6 @@ export default class LexicalModelCompiler {
 
     return this.func;
   }
-
-  transpileSources(sources: Array<string>): Array<string> {
-    return sources.map((source) => ts.transpileModule(source, {
-        compilerOptions: { module: ts.ModuleKind.None }
-      }).outputText
-    );
-  };
 
   logError(s: string) {
     console.error(require('chalk').red(s));
