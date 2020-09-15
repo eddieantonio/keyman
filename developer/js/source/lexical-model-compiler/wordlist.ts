@@ -7,3 +7,13 @@
  */
 
 export type WordList = { [wordform: string]: number; };
+
+/**
+ * All the information is required by the parsing infrastructure to parse a
+ * compile a wordlist.
+ */
+export interface WordListSource {
+  readonly name: string;
+  lines(): Iterable<LineNoAndText>;
+}
+export type LineNoAndText = [number, string];

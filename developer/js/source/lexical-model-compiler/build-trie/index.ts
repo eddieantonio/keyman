@@ -1,5 +1,5 @@
 import { log, KeymanCompilerError } from "../../errors";
-import { WordList } from "../wordlist";
+import { LineNoAndText, WordList, WordListSource } from "../wordlist";
 
 // Supports LF or CRLF line terminators.
 export const NEWLINE_SEPARATOR = /\u000d?\u000a/;
@@ -109,13 +109,6 @@ export function parseWordList(wordlist: WordList, source:  WordListSource): void
 
     wordlist[wordform] = (wordlist[wordform] || 0) + count;
   }
-}
-
-type LineNoAndText = [number, string];
-
-interface WordListSource {
-  readonly name: string;
-  lines(): Iterable<LineNoAndText>;
 }
 
 class WordListFromMemory implements WordListSource {
