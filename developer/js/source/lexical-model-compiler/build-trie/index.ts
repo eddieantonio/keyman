@@ -1,5 +1,5 @@
 import { readFileSync } from "fs";
-import { log, KeymanCompilerError } from "../errors";
+import { log, KeymanCompilerError } from "../../errors";
 
 // Supports LF or CRLF line terminators.
 const NEWLINE_SEPARATOR = /\u000d?\u000a/;
