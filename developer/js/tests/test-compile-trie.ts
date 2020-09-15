@@ -11,8 +11,7 @@ describe('LexicalModelCompiler', function () {
       const MODEL_ID = 'example.qaa.trivial';
       const PATH = makePathToFixture(MODEL_ID);
 
-      let compiler = new LegacyLexicalModelCompiler;
-      let code = compiler.generateLexicalModelCode(MODEL_ID, {
+      let code = LegacyLexicalModelCompiler.compileUsingLegacyInterface(MODEL_ID, {
         format: 'trie-1.0',
         sources: ['wordlist.tsv']
       }, PATH) as string;
@@ -34,8 +33,7 @@ describe('LexicalModelCompiler', function () {
       const MODEL_ID = 'example.qaa.utf16le';
       const PATH = makePathToFixture(MODEL_ID);
 
-      let compiler = new LegacyLexicalModelCompiler;
-      let code = compiler.generateLexicalModelCode(MODEL_ID, {
+      let code = LegacyLexicalModelCompiler.compileUsingLegacyInterface(MODEL_ID, {
         format: 'trie-1.0',
         sources: ['wordlist.txt']
       }, PATH) as string;
@@ -55,8 +53,7 @@ describe('LexicalModelCompiler', function () {
     const MODEL_ID = 'example.qaa.trivial';
     const PATH = makePathToFixture(MODEL_ID);
 
-    let compiler = new LegacyLexicalModelCompiler;
-    let code = compiler.generateLexicalModelCode(MODEL_ID, {
+    let code = LegacyLexicalModelCompiler.compileUsingLegacyInterface(MODEL_ID, {
       format: 'trie-1.0',
       sources: ['wordlist.tsv'],
       // This is a possible word breaking function:
@@ -78,8 +75,7 @@ describe('LexicalModelCompiler', function () {
     const MODEL_ID = 'example.qaa.smp';
     const PATH = makePathToFixture(MODEL_ID);
 
-    let compiler = new LegacyLexicalModelCompiler;
-    let code = compiler.generateLexicalModelCode(MODEL_ID, {
+    let code = LegacyLexicalModelCompiler.compileUsingLegacyInterface(MODEL_ID, {
       format: 'trie-1.0',
       sources: ['wordlist.tsv']
     }, PATH) as string;
@@ -111,8 +107,7 @@ describe('LexicalModelCompiler', function () {
   it('should include the source code of its search term to key function', function () {
     const MODEL_ID = 'example.qaa.trivial';
     const PATH = makePathToFixture(MODEL_ID);
-    let compiler = new LegacyLexicalModelCompiler;
-    let code = compiler.generateLexicalModelCode(MODEL_ID, {
+    let code = LegacyLexicalModelCompiler.compileUsingLegacyInterface(MODEL_ID, {
       format: 'trie-1.0',
       sources: ['wordlist.tsv']
       // NOTE: we intentionally OMIT the searchTermToKey function

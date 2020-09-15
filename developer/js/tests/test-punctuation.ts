@@ -12,8 +12,7 @@ describe('LexicalModelCompiler', function () {
     const PATH = path.join(__dirname, 'fixtures', MODEL_ID)
 
     it('should compile punctuation into the generated code', function () {
-      let compiler = new LegacyLexicalModelCompiler;
-      let code = compiler.generateLexicalModelCode(MODEL_ID, {
+      let code = LegacyLexicalModelCompiler.compileUsingLegacyInterface(MODEL_ID, {
         format: 'trie-1.0',
         sources: ['wordlist.tsv'],
         punctuation: {
