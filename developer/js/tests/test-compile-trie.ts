@@ -131,13 +131,13 @@ describe('createTrieDataStructure()', function () {
   it('uses the provided searchTermToKey function', function () {
     // check if the expected key is in the resultant data structure.
     // N.B., we assume the wordlist contains the wordform "turtles"
-    let lowercaseSourceCode = createTrieDataStructureFromFilenames([WORDLIST_FILENAME], (wf) => {
+    let lowercaseSourceCode = createTrieDataStructureFromFilenames([WORDLIST_FILENAME], (wf: string) => {
       return wf.toLowerCase()
     })
     assert.match(lowercaseSourceCode, /"key":\s*"turtles"/);
     assert.notMatch(lowercaseSourceCode, /"key":\s*"TURTLES"/);
 
-    let uppercaseSourceCode = createTrieDataStructureFromFilenames([WORDLIST_FILENAME], (wf) => {
+    let uppercaseSourceCode = createTrieDataStructureFromFilenames([WORDLIST_FILENAME], (wf: string) => {
       return wf.toUpperCase()
     })
     assert.match(uppercaseSourceCode, /"key":\s*"TURTLES"/);

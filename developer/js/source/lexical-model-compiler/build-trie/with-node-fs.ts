@@ -18,21 +18,6 @@ export function createTrieDataStructureFromFilenames(filenames: string[], search
   return compileTrieFromWordlist(wordListFromFilenames(filenames), searchTermToKey);
 }
 
-/**
- * @deprecated
- * @param filenames a list of filenames to open
- * @param searchTermToKey the key function
- */
-export function createTrieDataStructure(filenames: string[], searchTermToKey?: (wf: string) => string): string {
-  if (typeof searchTermToKey !== "function") {
-    // TODO: why is this a type error and not a static error???
-    throw new TypeError("searchTermToKey must be explicitly specified")
-  }
-
-  let wordlist: WordList = wordListFromFilenames(filenames);
-  return compileTrieFromWordlist(wordlist, searchTermToKey);
-}
-
 export class WordListFromFilename {
   readonly name: string;
   constructor(filename: string) {
