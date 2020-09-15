@@ -40,6 +40,6 @@
   "gitHead": "a69af392b26d19334da3cd8e6dac6869d1c726e5",
   "publishConfig": {
     "access": "public",
-    "registry": "https://npm.pkg.github.com/"
+    "registry": "https://npm.pkg.github.com/eddieantonio"
   }
 }
