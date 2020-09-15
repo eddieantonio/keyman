@@ -519,6 +519,10 @@ export function defaultSearchTermToKey(wordform: string): string {
  */
 function detectEncoding(filename: string): 'utf8' | 'utf16le' {
   let buffer = readFileSync(filename);
+  return detectEncodingFromBuffer(buffer);
+}
+
+function detectEncodingFromBuffer(buffer: Int8Array | Buffer): 'utf8' | 'utf16le' {
   // Note: BOM is U+FEFF
   // In little endian, this is 0xFF 0xFE
   if (buffer[0] == 0xFF && buffer[1] == 0xFE) {
