@@ -1,4 +1,4 @@
-import LexicalModelCompiler from '../dist/lexical-model-compiler/lexical-model-compiler';
+import { LegacyLexicalModelCompiler } from '../dist/lexical-model-compiler/lexical-model-compiler';
 import {assert} from 'chai';
 import 'mocha';
 
@@ -11,7 +11,7 @@ describe('LexicalModelCompiler', function () {
       const MODEL_ID = 'example.qaa.trivial';
       const PATH = makePathToFixture(MODEL_ID);
 
-      let compiler = new LexicalModelCompiler;
+      let compiler = new LegacyLexicalModelCompiler;
       let code = compiler.generateLexicalModelCode(MODEL_ID, {
         format: 'trie-1.0',
         sources: ['wordlist.tsv']
@@ -34,7 +34,7 @@ describe('LexicalModelCompiler', function () {
       const MODEL_ID = 'example.qaa.utf16le';
       const PATH = makePathToFixture(MODEL_ID);
 
-      let compiler = new LexicalModelCompiler;
+      let compiler = new LegacyLexicalModelCompiler;
       let code = compiler.generateLexicalModelCode(MODEL_ID, {
         format: 'trie-1.0',
         sources: ['wordlist.txt']
@@ -55,7 +55,7 @@ describe('LexicalModelCompiler', function () {
     const MODEL_ID = 'example.qaa.trivial';
     const PATH = makePathToFixture(MODEL_ID);
 
-    let compiler = new LexicalModelCompiler;
+    let compiler = new LegacyLexicalModelCompiler;
     let code = compiler.generateLexicalModelCode(MODEL_ID, {
       format: 'trie-1.0',
       sources: ['wordlist.tsv'],
@@ -78,7 +78,7 @@ describe('LexicalModelCompiler', function () {
     const MODEL_ID = 'example.qaa.smp';
     const PATH = makePathToFixture(MODEL_ID);
 
-    let compiler = new LexicalModelCompiler;
+    let compiler = new LegacyLexicalModelCompiler;
     let code = compiler.generateLexicalModelCode(MODEL_ID, {
       format: 'trie-1.0',
       sources: ['wordlist.tsv']
@@ -111,7 +111,7 @@ describe('LexicalModelCompiler', function () {
   it('should include the source code of its search term to key function', function () {
     const MODEL_ID = 'example.qaa.trivial';
     const PATH = makePathToFixture(MODEL_ID);
-    let compiler = new LexicalModelCompiler;
+    let compiler = new LegacyLexicalModelCompiler;
     let code = compiler.generateLexicalModelCode(MODEL_ID, {
       format: 'trie-1.0',
       sources: ['wordlist.tsv']

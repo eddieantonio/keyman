@@ -22,8 +22,21 @@ type JavaScriptSnippet = string & { _js: true };
  */
 export type GetWordListByName = (name: string) => WordListSource;
 
-export default class LexicalModelCompiler {
-  snippets: JavaScriptSnippet[] = [];
+export default interface LexicalModelCompiler {
+  /**
+   * Returns the generated code for the model that will ultimately be loaded by
+   * the LMLayer worker. This code contains all model parameters, and specifies
+   * word breakers and auxilary functions that may be required.
+   *
+   * @param model_id      The model ID. TODO: not sure if this is actually required!
+   * @param modelSource   A specification of the model to compile
+   * @param sourcePath    Where to find auxilary sources files
+   */
+  compile(modelSource: LexicalModelSource, getWordList: GetWordListByName): string;
+}
+
+class DefaultLexicalModelCompiler implements LexicalModelCompiler {
+  private snippets: JavaScriptSnippet[] = [];
 
   private emit(code: JavaScriptSnippet): void {
     this.snippets.push(code);
@@ -62,7 +75,6 @@ export default class LexicalModelCompiler {
    * the LMLayer worker. This code contains all model parameters, and specifies
    * word breakers and auxilary functions that may be required.
    *
-   * @deprecated
    * @param model_id      The model ID. TODO: not sure if this is actually required!
    * @param modelSource   A specification of the model to compile
    * @param sourcePath    Where to find auxilary sources files
@@ -111,7 +123,7 @@ export default class LexicalModelCompiler {
 };
 
 
-export class LegacyLexicalModelCompiler extends LexicalModelCompiler {
+export class LegacyLexicalModelCompiler extends DefaultLexicalModelCompiler {
   /**
    * Returns the generated code for the model that will ultimately be loaded by
    * the LMLayer worker. This code contains all model parameters, and specifies
@@ -122,7 +134,7 @@ export class LegacyLexicalModelCompiler extends LexicalModelCompiler {
    * @param sourcePath    Where to find auxilary sources files
    */
   static compileUsingLegacyInterface(model_id: string, modelSource: LexicalModelSource, sourcePath: string): string {
-    return (new LexicalModelCompiler).generateLexicalModelCode(model_id, modelSource, sourcePath);
+    return (new LegacyLexicalModelCompiler).generateLexicalModelCode(model_id, modelSource, sourcePath);
   }
 }
 

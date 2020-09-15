@@ -1,4 +1,4 @@
-import LexicalModelCompiler from '../dist/lexical-model-compiler/lexical-model-compiler';
+import { LegacyLexicalModelCompiler } from '../dist/lexical-model-compiler/lexical-model-compiler';
 import {assert} from 'chai';
 import 'mocha';
 
@@ -12,7 +12,7 @@ describe('LexicalModelCompiler', function () {
     const PATH = path.join(__dirname, 'fixtures', MODEL_ID)
 
     it('should compile punctuation into the generated code', function () {
-      let compiler = new LexicalModelCompiler;
+      let compiler = new LegacyLexicalModelCompiler;
       let code = compiler.generateLexicalModelCode(MODEL_ID, {
         format: 'trie-1.0',
         sources: ['wordlist.tsv'],
