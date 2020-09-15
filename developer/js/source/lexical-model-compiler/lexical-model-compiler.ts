@@ -23,6 +23,10 @@ export default class LexicalModelCompiler {
   private emit(code: JavaScriptSnippet): void {
     this.snippets.push(code);
   }
+  
+  private emitLine(code: JavaScriptSnippet): void {
+    this.emit((code + "\n") as JavaScriptSnippet)
+  }
 
   private get func() {
     return this.snippets.join('');
@@ -39,14 +43,13 @@ export default class LexicalModelCompiler {
    * @param sourcePath    Where to find auxilary sources files
    */
   generateLexicalModelCode(model_id: string, modelSource: LexicalModelSource, sourcePath: string) {
-    // TODO: add metadata in comment
-    const filePrefix = `(function() {\n'use strict';\n`;
-    const fileSuffix = `})();`;
-    this.emit(filePrefix as JavaScriptSnippet)
-
+    
     //
     // Emit the model as code and data
     //
+    this.emitLine(`(function() {` as JavaScriptSnippet);
+    this.emitLine(`'use strict';` as JavaScriptSnippet);
+    // TODO: add metadata in comment
 
     switch(modelSource.format) {
       case "custom-1.0":
@@ -79,7 +82,7 @@ export default class LexicalModelCompiler {
         throw new ModelSourceError(`Unknown model format: ${modelSource.format}`);
     }
 
-    this.emit(fileSuffix as JavaScriptSnippet);
+    this.emit(`})();` as JavaScriptSnippet);
 
     return this.func;
   }
