@@ -5,8 +5,11 @@
   ],
   "command": {
     "publish": {
-      "message": "chore(eddieantonio): publish %s",
       "registry": "https://npm.pkg.github.com/eddieantonio"
+    },
+    "version": {
+      "message": "chore(eddieantonio): publish %s",
+      "allowBranch": "predictive-text-studio"
     }
   },
   "hoist": [
