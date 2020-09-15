@@ -3,6 +3,12 @@
     "developer/js",
     "common/models/types"
   ],
+  "command": {
+    "publish": {
+      "message": "chore(eddieantonio): publish %s",
+      "registry": "https://npm.pkg.github.com/eddieantonio"
+    }
+  },
   "hoist": [
     "lerna",
     "typescript"
