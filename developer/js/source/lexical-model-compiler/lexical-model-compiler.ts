@@ -52,6 +52,7 @@ export default class LexicalModelCompiler {
 
     switch(modelSource.format) {
       case "custom-1.0":
+      case "fst-foma-1.0":
         throw new ModelSourceError(`Unimplemented model format: ${modelSource.format}`);
       case "trie-1.0":
         // Convert all relative path names to paths relative to the enclosing
@@ -77,6 +78,7 @@ export default class LexicalModelCompiler {
         }
         this.emit(`}));\n` as JavaScriptSnippet);
         break;
+
       default:
         throw new ModelSourceError(`Unknown model format: ${modelSource.format}`);
     }
