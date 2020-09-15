@@ -18,19 +18,6 @@ export default class LexicalModelCompiler {
    * the LMLayer worker. This code contains all model parameters, and specifies
    * word breakers and auxilary functions that may be required.
    *
-   * @param model_id      The model ID. TODO: not sure if this is actually required!
-   * @param modelSource   A specification of the model to compile
-   * @param sourcePath    Where to find auxilary sources files
-   */
-  static compileUsingLegacyInterface(model_id: string, modelSource: LexicalModelSource, sourcePath: string): string {
-    return (new LexicalModelCompiler).generateLexicalModelCode(model_id, modelSource, sourcePath);
-  }
-
-  /**
-   * Returns the generated code for the model that will ultimately be loaded by
-   * the LMLayer worker. This code contains all model parameters, and specifies
-   * word breakers and auxilary functions that may be required.
-   *
    * @deprecated
    * @param model_id      The model ID. TODO: not sure if this is actually required!
    * @param modelSource   A specification of the model to compile
@@ -93,6 +80,21 @@ export default class LexicalModelCompiler {
     console.error(require('chalk').red(s));
   };
 };
+
+export class LegacyLexicalModelCompiler extends LexicalModelCompiler {
+  /**
+   * Returns the generated code for the model that will ultimately be loaded by
+   * the LMLayer worker. This code contains all model parameters, and specifies
+   * word breakers and auxilary functions that may be required.
+   *
+   * @param model_id      The model ID. TODO: not sure if this is actually required!
+   * @param modelSource   A specification of the model to compile
+   * @param sourcePath    Where to find auxilary sources files
+   */
+  static compileUsingLegacyInterface(model_id: string, modelSource: LexicalModelSource, sourcePath: string): string {
+    return (new LexicalModelCompiler).generateLexicalModelCode(model_id, modelSource, sourcePath);
+  }
+}
 
 export class ModelSourceError extends Error {
 }
