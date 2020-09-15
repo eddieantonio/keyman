@@ -4,7 +4,8 @@
  * @file with-node-fs
  */
 import { readFileSync } from "fs";
-import { compileTrieFromWordlist, detectEncodingFromBuffer, enumerateLines, NEWLINE_SEPARATOR, WordList, parseWordList } from "./index";
+import { compileTrieFromWordlist, detectEncodingFromBuffer, enumerateLines, NEWLINE_SEPARATOR, parseWordList } from "./index";
+import { WordList } from "../wordlist";
 
 /**
  * Returns a data structure that can be loaded by the TrieModel.

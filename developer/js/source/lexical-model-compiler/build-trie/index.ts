@@ -1,16 +1,8 @@
 import { log, KeymanCompilerError } from "../../errors";
+import { WordList } from "../wordlist";
 
 // Supports LF or CRLF line terminators.
 export const NEWLINE_SEPARATOR = /\u000d?\u000a/;
-
-/**
- * A word list is (conceptually) an array of pairs: the concrete word form itself + a
- * non-negative count.
- *
- * Since each word should only appear once within the list, we represent it with
- * an associative array pattern keyed by the wordform.
- */
-export type WordList = {[wordform: string]: number};
 
 /**
  * Returns a data structure that can be loaded by the TrieModel.
