@@ -5,7 +5,7 @@ import * as path from 'path';
 import * as ts from 'typescript';
 
 import { SysExits } from "./sysexits";
-import LexicalModelCompiler from '../lexical-model-compiler/lexical-model-compiler';
+import { LegacyLexicalModelCompiler } from '../lexical-model-compiler/lexical-model-compiler';
 
 /**
  * Compiles a model.ts file, using paths relative to its location.
@@ -17,8 +17,8 @@ export function compileModel(filename: string): string {
   let modelSource = loadFromFilename(filename);
   let containingDirectory = path.dirname(filename);
 
-  return (new LexicalModelCompiler)
-    .generateLexicalModelCode('<unknown>', modelSource, containingDirectory);
+  return LegacyLexicalModelCompiler
+    .compileUsingLegacyInterface('<unknown>', modelSource, containingDirectory);
 }
 
 /**
