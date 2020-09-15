@@ -503,6 +503,14 @@ export function defaultSearchTermToKey(wordform: string): string {
 
 
 /**
+ * @deprecated Use detectEncodingFromFilename instead
+ */
+function detectEncoding(filename: string): 'utf8' | 'utf16le' {
+  let buffer = readFileSync(filename);
+  return detectEncodingFromBuffer(buffer);
+}
+
+/**
  * Detects the encoding of a text file.
  *
  * Supported encodings are:
@@ -517,11 +525,6 @@ export function defaultSearchTermToKey(wordform: string): string {
  *
  * @param filename filename of the file to detect encoding
  */
-function detectEncoding(filename: string): 'utf8' | 'utf16le' {
-  let buffer = readFileSync(filename);
-  return detectEncodingFromBuffer(buffer);
-}
-
 function detectEncodingFromBuffer(buffer: Int8Array | Buffer): 'utf8' | 'utf16le' {
   // Note: BOM is U+FEFF
   // In little endian, this is 0xFF 0xFE
