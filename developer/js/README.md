@@ -1,43 +1,36 @@
 Keyman Developer
 ================
 
-This package provides the following Keyman **command line tools**:
-
- - `kmlmc` — takes **lexical model sources** and compiles them in to
-   a **.js** file.
- - `kmlmp` — uses a `.model.kmp` file to generate a redistributable
-   **lexical model package**.
- - `kmlmi` — merges Keyman lexical model `.model_info` files.
-
-`kmlmc` is intended to be used standalone, or as part of a build system.
-`kmlmp` is used only by command line tools. `kmlmi` is used exclusively
-in the [lexical-models repository][lexical models].
-
-In order to build [lexical models][], these tools must be built and
-compiled.
-
-[lexical models]: https://github.com/keymanapp/lexical-models
-
+@eddieantonio's fork:
 
 Install
 -------
 
-Install `kmlmc`, `kmlmp`, and `kmlmi` globally:
+    yarn add @eddieantonio/lexical-model-compiler
 
-    npm install -g @keymanapp/lexical-model-compiler
+or
+
+    npm install @eddieantonio/lexical-model-compiler --save
 
 Usage
 -----
 
-To compile a lexical model from its `.model.ts` source, use `kmlmc`:
+Check `source/index.ts` for more details!
 
-    kmlmc my-lexical-model.model.ts --outFile my-lexical-model.js
+```typescript
+import {compileModelFromLexicalModelSource}
+let javaScriptCode: string = compileModelFromLexicalModelSource({
+  format: "trie-1.0",
+  source: [{
+    name: "<memory>",
+    *lines() {
+      yield [1, "hello,100"];
+    }
+  }]
+});
 
-To see more command line options by using the `--help` option:
-
-    kmlmc --help
-    kmlmp --help
-    kmlmi --help
+console.log(javaScriptCode);
+```
 
 How to build from source
 ------------------------
@@ -51,11 +44,3 @@ How to run the tests
 --------------------
 
     ./build.sh -test
-
-
-How to update the package version
----------------------------------
-
-**NOTE**: this step should only be performed on the CI server:
-
-    ./build.sh -version MAJOR.MINOR.${BUILD_NUMBER} [-tier (alpha|beta)]
