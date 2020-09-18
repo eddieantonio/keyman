@@ -103,7 +103,3 @@ interface LexicalModelSource extends LexicalModelDeclaration {
    */
   readonly punctuation?: LexicalModelPunctuation;
 }
-
-interface LexicalModelCompiled extends LexicalModelDeclaration {
-  readonly id: string;
-}
