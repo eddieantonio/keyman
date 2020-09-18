@@ -3,6 +3,7 @@
  */
 import LexicalModelCompiler, { DefaultLexicalModelCompiler, ModelSourceError } from "./lexical-model-compiler";
 import {WordList} from './wordlist';
+import {LexicalModelSource} from './lexical-model-source';
 
 export default LexicalModelCompiler;
 export {

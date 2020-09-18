@@ -4,12 +4,11 @@
  * the LMLayer's internal worker code, so we provide those definitions too.
  */
 
-
 /**
  * Required information for the Lexical Model Compiler.
  * 
  */
-interface LexicalModelSource {
+export interface LexicalModelSource {
   /**
    * What format this model's data is in. Each format dictates its list of
    * options, as well as what each source file means.
@@ -58,7 +57,7 @@ interface LexicalModelSource {
  *
  * @since 14.0
  */
-interface WordBreakerSpec {
+export interface WordBreakerSpec {
   readonly use: SimpleWordBreakerSpec;
   /**
    * If present, joins words that were split by the word breaker
@@ -85,7 +84,7 @@ interface WordBreakerSpec {
  *
  * @since 11.0
  */
-type SimpleWordBreakerSpec = 'default' | 'ascii' | WordBreakingFunction;
+export type SimpleWordBreakerSpec = 'default' | 'ascii' | WordBreakingFunction;
 
 /**
  * Override the default word breaking behaviour for some scripts.
@@ -111,4 +110,4 @@ type SimpleWordBreakerSpec = 'default' | 'ascii' | WordBreakingFunction;
  *
  * @since 14.0
  */
-type OverrideScriptDefaults = 'break-words-at-spaces';
+export type OverrideScriptDefaults = 'break-words-at-spaces';

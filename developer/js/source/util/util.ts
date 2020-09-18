@@ -6,6 +6,7 @@ import * as ts from 'typescript';
 
 import { SysExits } from "./sysexits";
 import { LegacyLexicalModelCompiler } from "../lexical-model-compiler/legacy-lexical-model-compiler";
+import { LexicalModelSource } from '../lexical-model-compiler/lexical-model-source';
 
 /**
  * Compiles a model.ts file, using paths relative to its location.

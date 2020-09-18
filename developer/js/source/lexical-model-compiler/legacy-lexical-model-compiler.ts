@@ -1,6 +1,7 @@
 import * as path from "path";
 import { WordListFromFilename } from "./build-trie/with-node-fs";
 import { DefaultLexicalModelCompiler } from "./lexical-model-compiler";
+import { LexicalModelSource } from "./lexical-model-source";
 
 
 

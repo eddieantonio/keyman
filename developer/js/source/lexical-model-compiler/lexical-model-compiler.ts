@@ -9,6 +9,7 @@ import {decorateWithJoin} from "./join-word-breaker-decorator";
 import {decorateWithScriptOverrides} from "./script-overrides-decorator";
 import { WordListSource } from "./wordlist";
 import { parseWordList } from "./parse-wordlist";
+import { LexicalModelSource, SimpleWordBreakerSpec, WordBreakerSpec } from "./lexical-model-source";
 
 /**
  * A string that MUST be a valid snippet of JavaScript code.

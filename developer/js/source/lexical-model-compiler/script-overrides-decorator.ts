@@ -1,3 +1,5 @@
+import { OverrideScriptDefaults } from "./lexical-model-source";
+
 export function decorateWithScriptOverrides(breaker: WordBreakingFunction, option: OverrideScriptDefaults) {
   if (option !== 'break-words-at-spaces') {
     throw new Error(`Unsupported script override: ${option}`)
