@@ -18,7 +18,8 @@ Usage
 Check `source/index.ts` for more details!
 
 ```typescript
-import {compileModelFromLexicalModelSource}
+import {compileModelFromLexicalModelSource} from "@eddieantonio/lexical-model-compiler";
+
 let javaScriptCode: string = compileModelFromLexicalModelSource({
   format: "trie-1.0",
   source: [{
