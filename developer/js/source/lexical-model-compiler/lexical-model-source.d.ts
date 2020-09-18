@@ -1,7 +1,54 @@
 /**
+ * @file
  * Interfaces and constants used by the lexical model compiler. These target
  * the LMLayer's internal worker code, so we provide those definitions too.
  */
+
+
+/**
+ * Required information for the Lexical Model Compiler.
+ * 
+ */
+interface LexicalModelSource {
+  /**
+   * What format this model's data is in. Each format dictates its list of
+   * options, as well as what each source file means.
+   */
+  readonly format: 'trie-1.0'|'fst-foma-1.0'|'custom-1.0';
+
+  /**
+   * Data sources; this depends on each model type.
+   */
+  readonly sources: Array<string>;
+  /**
+   * The name of the type to instantiate (without parameters) as the base object for a custom predictive model.
+   */
+  readonly rootClass?: string
+
+  /**
+   * Which word breaker to use. Choose from:
+   *
+   *  - 'default' -- breaks according to Unicode UAX #29 §4.1 Default Word
+   *    Boundary Specification, which works well for *most* languages.
+   *  - 'ascii' -- a very simple word breaker, for demonstration purposes only.
+   *  - word breaking function -- provide your own function that breaks words.
+   *  - class-based word-breaker - may be supported in the future.
+   */
+  readonly wordBreaker?: WordBreakerSpec | SimpleWordBreakerSpec;
+
+  /**
+   * How to simplify words, to convert them into simplifired search keys
+   * This often involves removing accents, lowercasing, etc.
+   */
+  readonly searchTermToKey?: (term: string) => string;
+
+  /**
+   * Punctuation and spacing suggested by the model.
+   *
+   * @see LexicalModelPunctuation
+   */
+  readonly punctuation?: LexicalModelPunctuation;
+}
 
 /**
  * Keyman 14.0+ word breaker specification:
@@ -65,38 +112,3 @@ type SimpleWordBreakerSpec = 'default' | 'ascii' | WordBreakingFunction;
  * @since 14.0
  */
 type OverrideScriptDefaults = 'break-words-at-spaces';
-
-
-interface LexicalModelSource {
-  readonly format: 'trie-1.0'|'fst-foma-1.0'|'custom-1.0';
-
-  readonly sources: Array<string>;
-  /**
-   * The name of the type to instantiate (without parameters) as the base object for a custom predictive model.
-   */
-  readonly rootClass?: string
-
-  /**
-   * Which word breaker to use. Choose from:
-   *
-   *  - 'default' -- breaks according to Unicode UAX #29 §4.1 Default Word
-   *    Boundary Specification, which works well for *most* languages.
-   *  - 'ascii' -- a very simple word breaker, for demonstration purposes only.
-   *  - word breaking function -- provide your own function that breaks words.
-   *  - class-based word-breaker - may be supported in the future.
-   */
-  readonly wordBreaker?: WordBreakerSpec | SimpleWordBreakerSpec;
-
-  /**
-   * How to simplify words, to convert them into simplifired search keys
-   * This often involves removing accents, lowercasing, etc.
-   */
-  readonly searchTermToKey?: (term: string) => string;
-
-  /**
-   * Punctuation and spacing suggested by the model.
-   *
-   * @see LexicalModelPunctuation
-   */
-  readonly punctuation?: LexicalModelPunctuation;
-}
