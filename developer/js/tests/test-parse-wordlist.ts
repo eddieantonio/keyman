@@ -1,5 +1,5 @@
 import {parseWordListFromContents} from '../dist/lexical-model-compiler/build-trie';
-import {WordList} from '../dist/lexical-model-compiler/wordlist';
+import {WordList} from '../dist/lexical-model-compiler';
 import {parseWordListFromFilename} from '../dist/lexical-model-compiler/build-trie/with-node-fs';
 import {assert} from 'chai';
 import 'mocha';
