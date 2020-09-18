@@ -3,12 +3,18 @@
  * Node imports, therefore, they are safe to use in the Browser or WebWorker
  * context.
  */
-import LexicalModelCompiler, { DefaultLexicalModelCompiler, ModelSourceError } from "./lexical-model-compiler";
+import LexicalModelCompiler, {
+  DefaultLexicalModelCompiler,
+  ModelSourceError,
+  compileModelFromLexicalModelSource
+} from "./lexical-model-compiler";
 import { LineNoAndText, WordList, WordListSource } from "./lexical-model-compiler/wordlist";
+import { LexicalModelSource } from "./lexical-model-compiler/lexical-model-source";
 
 export {
   /* Interfaces and types */
   LexicalModelCompiler,
+  LexicalModelSource,
   LineNoAndText,
   WordList,
   WordListSource,
@@ -16,4 +22,7 @@ export {
   /* Concrete implementations */
   DefaultLexicalModelCompiler,
   ModelSourceError,
+
+  /* Functions */
+  compileModelFromLexicalModelSource,
 };
