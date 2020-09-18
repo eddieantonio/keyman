@@ -1,6 +1,6 @@
 {
   "name": "@eddieantonio/lexical-model-compiler",
-  "version": "14.0.0-alpha.2",
+  "version": "14.0.0-alpha.3",
   "description": "Keyman Developer lexical model compiler",
   "keywords": [
     "keyboard",
@@ -39,7 +39,7 @@
     "node": ">=12.0.0"
   },
   "dependencies": {
-    "@eddieantonio/models-types": "^14.0.0-alpha.2",
+    "@eddieantonio/models-types": "^14.0.0-alpha.3",
     "commander": "^3.0.0",
     "typescript": "^3.8.3",
     "xml2js": "^0.4.19"
