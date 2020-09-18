@@ -8,7 +8,8 @@
 import { compileTrieFromWordlist, defaultSearchTermToKey } from "./build-trie";
 import {decorateWithJoin} from "./join-word-breaker-decorator";
 import {decorateWithScriptOverrides} from "./script-overrides-decorator";
-import { parseWordList, WordListSource } from "./wordlist";
+import { WordListSource } from "./wordlist";
+import { parseWordList } from "./parse-wordlist";
 
 /**
  * A string that MUST be a valid snippet of JavaScript code.

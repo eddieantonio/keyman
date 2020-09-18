@@ -1,4 +1,5 @@
-import { LineNoAndText, parseWordList, WordList, WordListSource } from "../wordlist";
+import { LineNoAndText, WordList, WordListSource } from "../wordlist";
+import { parseWordList } from "../parse-wordlist";
 
 // Supports LF or CRLF line terminators.
 export const NEWLINE_SEPARATOR = /\u000d?\u000a/;

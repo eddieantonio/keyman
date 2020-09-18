@@ -5,7 +5,8 @@
  */
 import { readFileSync } from "fs";
 import { compileTrieFromWordlist, detectEncodingFromBuffer, enumerateLines, NEWLINE_SEPARATOR } from "./index";
-import { WordList, WordListSource, parseWordList } from "../wordlist";
+import { WordList, WordListSource } from "../wordlist";
+import { parseWordList } from "../parse-wordlist";
 
 /**
  * Returns a data structure that can be loaded by the TrieModel.
