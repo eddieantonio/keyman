@@ -124,7 +124,16 @@ describe('LexicalModelCompiler', function () {
     it('should compile given a custom WordList source object', function () {
       let code = compileModelFromLexicalModelSource({
         format: "trie-1.0",
-        sources: []
+        sources: [{
+          name: "saanich.tsv",
+          *lines() {
+            yield *[
+              ["TŦE", 13644],
+              ["E", 9134],
+              ["SEN", 4816]
+            ];
+          }
+        }]
       });
 
       let result = compileModelSourceCode(code);

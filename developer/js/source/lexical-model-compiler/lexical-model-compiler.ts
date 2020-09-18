@@ -69,7 +69,11 @@ export class DefaultLexicalModelCompiler implements LexicalModelCompiler {
         throw new ModelSourceError(`Unimplemented model format: ${modelSource.format}`);
       case "trie-1.0":
         let wordlist = modelSource.sources.reduce((wl, name) => {
-          parseWordList(wl, getWordList(name));
+          if (typeof name == "string") {
+            parseWordList(wl, getWordList(name));
+          } else {
+            throw new Error("not implemented!")
+          }
           return wl;
         }, {});
 

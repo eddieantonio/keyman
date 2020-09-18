@@ -4,6 +4,15 @@
  * the LMLayer's internal worker code, so we provide those definitions too.
  */
 
+// Need WordListSource from this file:
+
+import {WordListSource} from "./wordlist";
+
+/**
+ * Possible sources
+ */
+type SourceFile = string | WordListSource;
+
 /**
  * Required information for the Lexical Model Compiler.
  * 
@@ -18,7 +27,7 @@ export interface LexicalModelSource {
   /**
    * Data sources; this depends on each model type.
    */
-  readonly sources: Array<string>;
+  readonly sources: SourceFile[];
   /**
    * The name of the type to instantiate (without parameters) as the base object for a custom predictive model.
    */
