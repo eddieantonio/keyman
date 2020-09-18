@@ -132,6 +132,7 @@ describe('LexicalModelCompiler', function () {
         format: "trie-1.0",
         sources: [{
           name: "saanich.tsv",
+          // TODO: this is dumb:
           *lines() {
             let i = 1;
             for (let [token, count] of rawWordList) {
@@ -141,10 +142,15 @@ describe('LexicalModelCompiler', function () {
         }]
       });
 
+      // Assert that it compiled successfully.
       let result = compileModelSourceCode(code);
       assert.isFalse(result.hasSyntaxError);
       assert.isNotNull(result.exportedModel);
       assert.equal(result.modelConstructorName, 'TrieModel');
+
+      // Assert that it's our actual data! 
+      assert.include(code, "TŦE");
+      assert.include(code, "SEN");
     });
   });
 });
