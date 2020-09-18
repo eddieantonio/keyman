@@ -68,12 +68,9 @@ export class DefaultLexicalModelCompiler implements LexicalModelCompiler {
       case "fst-foma-1.0":
         throw new ModelSourceError(`Unimplemented model format: ${modelSource.format}`);
       case "trie-1.0":
-        let wordlist = modelSource.sources.reduce((wl, name) => {
-          if (typeof name == "string") {
-            parseWordList(wl, getWordList(name));
-          } else {
-            throw new Error("not implemented!")
-          }
+        let wordlist = modelSource.sources.reduce((wl, source) => {
+          let wordlistSource = typeof source === "string" ? getWordList(source) : source;
+          parseWordList(wl, wordlistSource);
           return wl;
         }, {});
 

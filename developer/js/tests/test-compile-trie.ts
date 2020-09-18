@@ -122,16 +122,21 @@ describe('LexicalModelCompiler', function () {
 
   describe('FS-less compile', function () {
     it('should compile given a custom WordList source object', function () {
+      const rawWordList = [
+        ["TŦE", 13644],
+        ["E", 9134],
+        ["SEN", 4816]
+      ];
+
       let code = compileModelFromLexicalModelSource({
         format: "trie-1.0",
         sources: [{
           name: "saanich.tsv",
           *lines() {
-            yield *[
-              ["TŦE", 13644],
-              ["E", 9134],
-              ["SEN", 4816]
-            ];
+            let i = 1;
+            for (let [token, count] of rawWordList) {
+              yield [i++, `${token}\t${count}`];
+            };
           }
         }]
       });
