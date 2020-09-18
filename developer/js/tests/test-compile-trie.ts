@@ -4,6 +4,7 @@ import 'mocha';
 
 import {makePathToFixture, compileModelSourceCode} from './helpers';
 import { createTrieDataStructureFromFilenames } from '../dist/lexical-model-compiler/build-trie/with-node-fs';
+import { compileModelFromLexicalModelSource } from '../dist/lexical-model-compiler';
 
 describe('LexicalModelCompiler', function () {
   describe('#generateLexicalModelCode', function () {
@@ -117,6 +118,20 @@ describe('LexicalModelCompiler', function () {
     assert.match(code, /(["']|)searchTermToKey\1:\s*function\b/,
       'expected to find searchTermToKey specified as a function'
     );
+  });
+
+  describe('FS-less compile', function () {
+    it('should compile given a custom WordList source object', function () {
+      let code = compileModelFromLexicalModelSource({
+        format: "trie-1.0",
+        sources: []
+      });
+
+      let result = compileModelSourceCode(code);
+      assert.isFalse(result.hasSyntaxError);
+      assert.isNotNull(result.exportedModel);
+      assert.equal(result.modelConstructorName, 'TrieModel');
+    });
   });
 });
 
