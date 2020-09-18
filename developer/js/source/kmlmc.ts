@@ -2,7 +2,6 @@
 /**
  * kmlmc - Keyman Lexical Model Compiler
  */
-/// <reference path="lexical-model-compiler/lexical-model.ts" />
 
 import * as fs from 'fs';
 import * as program from 'commander';

@@ -2,7 +2,6 @@
   lexical-model-compiler.ts: base file for lexical model compiler.
 */
 
-/// <reference path="./lexical-model.ts" />
 /// <reference path="./model-info-file.ts" />
 
 import { compileTrieFromWordlist, defaultSearchTermToKey } from "./build-trie";

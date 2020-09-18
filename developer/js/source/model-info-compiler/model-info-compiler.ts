@@ -3,7 +3,6 @@
  * compiled files to produce a comprehensive .model_info file.
  */
 
-/// <reference path="../lexical-model-compiler/lexical-model.ts" />
 /// <reference path="../lexical-model-compiler/model-info-file.ts" />
 
 import * as fs from "fs";
