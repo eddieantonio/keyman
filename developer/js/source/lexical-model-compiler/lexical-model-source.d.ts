@@ -3,11 +3,6 @@
  * the LMLayer's internal worker code, so we provide those definitions too.
  */
 
-interface LexicalModelDeclaration {
-  readonly format: 'trie-1.0'|'fst-foma-1.0'|'custom-1.0',
-  //... metadata ...
-}
-
 /**
  * Keyman 14.0+ word breaker specification:
  *
@@ -72,7 +67,9 @@ type SimpleWordBreakerSpec = 'default' | 'ascii' | WordBreakingFunction;
 type OverrideScriptDefaults = 'break-words-at-spaces';
 
 
-interface LexicalModelSource extends LexicalModelDeclaration {
+interface LexicalModelSource {
+  readonly format: 'trie-1.0'|'fst-foma-1.0'|'custom-1.0';
+
   readonly sources: Array<string>;
   /**
    * The name of the type to instantiate (without parameters) as the base object for a custom predictive model.
