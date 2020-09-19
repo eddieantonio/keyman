@@ -4,7 +4,7 @@ import 'mocha';
 
 import {makePathToFixture, compileModelSourceCode} from './helpers';
 import { createTrieDataStructureFromFilenames } from '../dist/lexical-model-compiler/build-trie/with-node-fs';
-import { compileModelFromLexicalModelSource } from '../dist/lexical-model-compiler';
+import { WordListFromArray, compileModelFromLexicalModelSource } from '../dist/lexical-model-compiler';
 
 describe('LexicalModelCompiler', function () {
   describe('#generateLexicalModelCode', function () {
@@ -120,26 +120,17 @@ describe('LexicalModelCompiler', function () {
     );
   });
 
-  describe('FS-less compile', function () {
+  describe('Compile without the filesystem', function () {
     it('should compile given a custom WordList source object', function () {
-      const rawWordList = [
-        ["TŦE", 13644],
-        ["E", 9134],
-        ["SEN", 4816]
-      ];
-
       let code = compileModelFromLexicalModelSource({
         format: "trie-1.0",
-        sources: [{
-          name: "saanich.tsv",
-          // TODO: this is dumb:
-          *lines() {
-            let i = 1;
-            for (let [token, count] of rawWordList) {
-              yield [i++, `${token}\t${count}`];
-            };
-          }
-        }]
+        sources: [
+          new WordListFromArray("saanich.tsv", [
+            ["TŦE", 13644],
+            ["E", 9134],
+            ["SEN", 4816]
+          ])
+        ]
       });
 
       // Assert that it compiled successfully.
