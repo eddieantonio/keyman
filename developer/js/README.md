@@ -1,16 +1,16 @@
 Keyman Developer
 ================
 
-@eddieantonio's fork:
+Eddie's fork:
 
 Install
 -------
 
-    yarn add @eddieantonio/lexical-model-compiler
+    yarn add @predictive-text-studio/lexical-model-compiler
 
 or
 
-    npm install @eddieantonio/lexical-model-compiler --save
+    npm install @predictive-text-studio/lexical-model-compiler --save
 
 Usage
 -----
@@ -18,7 +18,7 @@ Usage
 Check `source/index.ts` for more details!
 
 ```typescript
-import {compileModelFromLexicalModelSource} from "@eddieantonio/lexical-model-compiler";
+import {compileModelFromLexicalModelSource} from "@predictive-text-studio/lexical-model-compiler";
 
 let javaScriptCode: string = compileModelFromLexicalModelSource({
   format: "trie-1.0",

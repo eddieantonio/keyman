@@ -1,6 +1,6 @@
 {
-  "name": "@keymanapp/models-wordbreakers",
-  "version": "14.0.156-alpha.1",
+  "name": "@predictive-text-studio/models-wordbreakers",
+  "version": "14.0.0",
   "description": "Word breakers bundled in the modeling layer",
   "keywords": [
     "lexical model",
@@ -41,7 +41,7 @@
     "url": "https://github.com/keymanapp/keyman/issues"
   },
   "devDependencies": {
-    "@keymanapp/models-types": "^14.0.156-alpha.1",
+    "@predictive-text-studio/models-types": "^14.0.0",
     "@types/chai": "^4.2.11",
     "@types/mocha": "^7.0.2",
     "chai": "^4.2.0",

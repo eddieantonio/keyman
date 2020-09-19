@@ -1,12 +1,12 @@
 > **NOTE**: This is Eddie's fork of Keyman, for publishing npm packages
 > that (ideally) do not conflict with the upstream repository.
 > 
-> **All npm packages are uploaded under the `@eddieantonio` scope** rather
+> **All npm packages are uploaded under the `@predictive-text-studio` scope** rather
 > than the `@keymanapp` scope.
 > 
 > To see the custom packages, see here:
 > 
->  - https://github.com/eddieantonio/keyman/packages/
+>  - https://www.npmjs.com/settings/predictive-text-studio/packages
 
 ---
 

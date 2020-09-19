@@ -15,7 +15,7 @@
     "noUnusedLocals": true,
     "typeRoots": [
       "./node_modules/@types",
-      "./node_modules/@eddieantonio"
+      "./node_modules/@predictive-text-studio"
     ],
     "types": [
       "chai", "mocha", "node", "xml2js", "models-types"

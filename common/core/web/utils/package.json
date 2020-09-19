@@ -1,6 +1,6 @@
 {
   "name": "@keymanapp/web-utils",
-  "version": "14.0.156-alpha.1",
+  "version": "14.0.0",
   "description": "Common utility functions used throughout other Keyman packages",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
