@@ -12,6 +12,12 @@ export {
   WordList,
 };
 
+/**
+ * Given a {@link LexicalModelSource}, this returns the compiled JavaScript
+ * model that can be packaged into a .kmp file.
+ *
+ * @returns {string} the generated model code
+ */
 export function compileModelFromLexicalModelSource(source: LexicalModelSource): string {
   return (new DefaultLexicalModelCompiler).compile(source, () => {
     throw new Error("Not implemented: provide sources via filename")
