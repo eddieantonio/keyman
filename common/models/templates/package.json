@@ -1,6 +1,6 @@
 {
   "name": "@predictive-text-studio/models-templates",
-  "version": "14.0.0",
+  "version": "14.0.0-alpha.0",
   "description": "Backing model implementations (templates) for Keyman's modelling layer",
   "keywords": [
     "lm",
@@ -43,7 +43,7 @@
     "url": "https://github.com/keymanapp/keyman/issues"
   },
   "devDependencies": {
-    "@predictive-text-studio/models-types": "^14.0.0",
+    "@predictive-text-studio/models-types": "^14.0.0-alpha.0",
     "@types/chai": "^4.2.11",
     "@types/mocha": "^7.0.2",
     "@types/node": "^14.0.4",
@@ -52,7 +52,7 @@
     "typescript": "^3.8.3"
   },
   "dependencies": {
-    "@predictive-text-studio/models-wordbreakers": "^14.0.0"
+    "@predictive-text-studio/models-wordbreakers": "^14.0.0-alpha.0"
   },
   "gitHead": "a69af392b26d19334da3cd8e6dac6869d1c726e5"
 }
