@@ -6,9 +6,14 @@
 import LexicalModelCompiler, {
   DefaultLexicalModelCompiler,
   ModelSourceError,
-  compileModelFromLexicalModelSource
+  WordListFromArray,
+  compileModelFromLexicalModelSource,
 } from "./lexical-model-compiler";
-import { LineNoAndText, WordList, WordListSource } from "./lexical-model-compiler/wordlist";
+import {
+  LineNoAndText,
+  WordList,
+  WordListSource,
+} from "./lexical-model-compiler/wordlist";
 import { LexicalModelSource } from "./lexical-model-compiler/lexical-model-source";
 
 export {
@@ -18,11 +23,10 @@ export {
   LineNoAndText,
   WordList,
   WordListSource,
-
   /* Concrete implementations */
   DefaultLexicalModelCompiler,
   ModelSourceError,
-
+  WordListFromArray,
   /* Functions */
   compileModelFromLexicalModelSource,
 };
