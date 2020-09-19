@@ -37,9 +37,5 @@
     "README.md",
     "index.d.ts"
   ],
-  "gitHead": "a69af392b26d19334da3cd8e6dac6869d1c726e5",
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://npm.pkg.github.com/eddieantonio"
-  }
+  "gitHead": "9ebe0d2ce7c193f370577bbdc99aaaa0b89154c8"
 }
