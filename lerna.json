@@ -7,7 +7,7 @@
   ],
   "command": {
     "version": {
-      "message": "chore(eddieantonio): publish %s",
+      "message": "chore(@predictive-text-studio): publish %s",
       "allowBranch": "predictive-text-studio"
     }
   },

@@ -29,6 +29,9 @@
   "bugs": {
     "url": "https://github.com/keymanapp/keyman/issues"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "homepage": "https://github.com/keymanapp/keyman/tree/master/common/models/types#readme",
   "devDependencies": {
     "typescript": "^3.8.3"
@@ -37,5 +40,5 @@
     "README.md",
     "index.d.ts"
   ],
-  "gitHead": "9ebe0d2ce7c193f370577bbdc99aaaa0b89154c8"
+  "gitHead": "eac2ac7445f95aecca303402771f97804500f8ad"
 }

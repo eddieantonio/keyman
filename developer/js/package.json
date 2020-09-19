@@ -19,6 +19,9 @@
     "url": "git+https://github.com/eddieantonio/keyman.git",
     "directory": "developer/js"
   },
+  "publishConfig": {
+    "access": "public"
+  },
   "author": "Marc Durdin <marc@keyman.com> (https://github.com/mcdurdin)",
   "contributors": [
     "Eddie Antonio Santos <Eddie.Santos@nrc-cnrc.gc.ca>",
@@ -61,5 +64,5 @@
     "require": "ts-node/register",
     "spec": "tests/**/test-*.ts"
   },
-  "gitHead": "9ebe0d2ce7c193f370577bbdc99aaaa0b89154c8"
+  "gitHead": "eac2ac7445f95aecca303402771f97804500f8ad"
 }
