@@ -6,9 +6,6 @@
     "common/models/wordbreakers"
   ],
   "command": {
-    "publish": {
-      "registry": "https://npm.pkg.github.com/eddieantonio"
-    },
     "version": {
       "message": "chore(eddieantonio): publish %s",
       "allowBranch": "predictive-text-studio"
