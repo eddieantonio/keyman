@@ -3,7 +3,6 @@
     "developer/js",
     "common/models/types",
     "common/models/templates",
-    "common/core/web/utils",
     "common/models/wordbreakers"
   ],
   "command": {
